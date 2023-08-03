@@ -1,0 +1,100 @@
+<!--
+Copyright (C) 2023 musicnbrain.org
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://uploads-ssl.webflow.com/6011e54d61042f6e5b8cee51/601c4e57e3ad3723dd1c7547_Logo%2032x32.png"
+      rel="shortcut icon"
+      type="image/x-icon"
+    />
+    <title>Front</title>
+    <style>
+      .front {
+        overflow: clip;
+        user-select: none;
+        min-height: 100%;
+        width: 48vw;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        background: url("https://cdn.pixabay.com/photo/2022/11/28/18/58/piano-7622920_1280.jpg")
+          fixed;
+        background-size: 100vw 100vh;
+      }
+
+      .front-upper {
+        position: absolute;
+        top: 2vh;
+        left: 0;
+        background-color: rgba(256, 256, 256, 0.8);
+      }
+
+      #title {
+        font-size: 4vw;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: left;
+      }
+
+      #subtitle {
+        font-size: 2vw;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: left;
+      }
+
+      .front-lower {
+        position: absolute;
+        bottom: 2vh;
+        right: 0;
+        background-color: rgba(256, 256, 256, 0.8);
+      }
+
+      #time {
+        font-size: 2vw;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: right;
+      }
+
+      #location {
+        font-size: 1.5vw;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: right;
+      }
+
+      #address {
+        font-size: 1.5vw;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="front">
+      <div class="front-upper">
+        <div id="title">{{data.title}}</div>
+        <div id="subtitle">{{data.subtitle}}</div>
+      </div>
+      <div class="front-lower">
+        <div id="time">{{data.time}}</div>
+        <div id="location">{{data.location}}</div>
+        <div id="address">{{data.address}}</div>
+      </div>
+    </div>
+  </body>
+</html>

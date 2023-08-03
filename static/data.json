@@ -1,0 +1,318 @@
+{
+  "license notice": [
+    "Copyright (C) 2023 musicnbrain.org",
+    "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.",
+    "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.",
+    "You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>."
+  ],
+  "front": {
+    "title": "A PIANO RECITAL",
+    "subtitle": "featuring students of Miranda Shum",
+    "time": "SUNDAY, APRIL 23, 2023 | 2:00 PM",
+    "location": "Tateuchi Hall, Community School of Music and Arts",
+    "address": "230 San Antonio Circle, Mountain View CA 94040"
+  },
+  "content": [
+    {
+      "performer": "Hannah, Agronin",
+      "pieces": [
+        {
+          "title": ["Do You Want to Build a Snowman?"],
+          "composer": ["Anderson-Lopez & Lopez"]
+        },
+        {
+          "title": ["Ode to Joy"],
+          "composer": ["Ludwig van Beethoven"]
+        }
+      ]
+    },
+    {
+      "performer": "Shepherd Johnson",
+      "pieces": [
+        {
+          "title": ["Cinderella's Waltz"],
+          "composer": ["Faber & Faber"]
+        },
+        {
+          "title": ["Con Brio"],
+          "composer": ["Franz Joseph Haydn"]
+        }
+      ]
+    },
+    {
+      "performer": "Victor Blazquez",
+      "pieces": [
+        {
+          "title": ["The Juggler"],
+          "composer": ["Faber & Faber"]
+        },
+        {
+          "title": ["Star Wars (Main Theme)"],
+          "composer": ["John Williams"]
+        }
+      ]
+    },
+    {
+      "performer": "Maia Clouin",
+      "pieces": [
+        {
+          "title": ["This Is Not Jingle Bells"],
+          "composer": ["Faber & Faber"]
+        },
+        {
+          "title": ["Lead On, Black Horse"],
+          "composer": ["Russian Folk Song"]
+        },
+        {
+          "title": ["Scarf Dance"],
+          "composer": ["Mauro Giuliani"]
+        }
+      ]
+    },
+    {
+      "performer": "Ameya Madhavan",
+      "pieces": [
+        {
+          "title": ["A Whole New World"],
+          "composer": ["Alan Menken"]
+        },
+        {
+          "title": ["The Banana Boat Song"],
+          "composer": ["Jamaican Folk Song"]
+        }
+      ]
+    },
+    {
+      "performer": "Naren Raghavan",
+      "pieces": [
+        {
+          "title": ["March Militaire"],
+          "composer": ["Franz Schubert"]
+        },
+        {
+          "title": ["Whirling Leaves"],
+          "composer": ["Faber & Faber"]
+        }
+      ]
+    },
+    {
+      "performer": "Myra Mathur",
+      "pieces": [
+        {
+          "title": ["I've Got a Dream"],
+          "composer": ["Traditional"]
+        },
+        {
+          "title": ["Dance of the Irish"],
+          "composer": ["Faber & Faber"]
+        }
+      ]
+    },
+    {
+      "performer": "Veda Sastry",
+      "pieces": [
+        {
+          "title": ["The Ice Skaters"],
+          "composer": ["Émile Waldteufel"]
+        },
+        {
+          "title": ["He's a Pirate"],
+          "composer": ["Klaus Badelt"]
+        }
+      ]
+    },
+    {
+      "performer": "Michelle Agronin",
+      "pieces": [
+        {
+          "title": ["Dreamers"],
+          "composer": ["Jungkook"]
+        },
+        {
+          "title": ["Sword Song"],
+          "composer": ["Faber & Faber"]
+        }
+      ]
+    },
+    {
+      "performer": "Iris Lei Tipson",
+      "pieces": [
+        {
+          "title": ["Lunar Eclipse"],
+          "composer": ["Faber & Faber"]
+        },
+        {
+          "title": ["Sneaky business"],
+          "composer": ["Martha Mier"]
+        }
+      ]
+    },
+    {
+      "performer": "Annika Eidinger",
+      "pieces": [
+        {
+          "title": ["Moonlight Sonata"],
+          "composer": ["Ludwig van Beethoven", "(arr. Mary K. Sallee)"]
+        },
+        {
+          "title": ["Down by the Bay"],
+          "composer": ["Traditional"]
+        }
+      ]
+    },
+    {
+      "performer": "Alice Thomas",
+      "pieces": [
+        {
+          "title": ["Melodie, Op. 68 No. 1"],
+          "composer": ["Robert Schumann"]
+        },
+        {
+          "title": ["The Detective"],
+          "composer": ["Pam Wedgwood"]
+        },
+        {
+          "title": ["The Bare Necessities"],
+          "composer": ["Terry Gilkyson"]
+        }
+      ]
+    },
+    {
+      "performer": "Tara Sankar",
+      "pieces": [
+        {
+          "title": ["Inter-City Stomp"],
+          "composer": ["Christopher Norton"]
+        },
+        {
+          "title": ["Angelfish"],
+          "composer": ["Anne Crosby Gaudet"]
+        },
+        {
+          "title": ["Sonatina No. 1 in G", "\tI. Allegro"],
+          "composer": ["Thomas Attwood"]
+        }
+      ]
+    },
+    {
+      "performer": "Sophie Thomas",
+      "pieces": [
+        {
+          "title": ["Gavotte in G"],
+          "composer": ["George Frideric Handel"]
+        },
+        {
+          "title": ["Anastasia"],
+          "composer": ["Ailbhe McDonagh"]
+        }
+      ]
+    },
+    {
+      "performer": "Jasper Chau",
+      "pieces": [
+        {
+          "title": ["Sonatina in G", "\tI. Moderato"],
+          "composer": ["Ludwig van Beethoven"]
+        },
+        {
+          "title": ["Turkish March"],
+          "composer": [""]
+        }
+      ]
+    },
+    {
+      "performer": "Chloe Chau",
+      "pieces": [
+        {
+          "title": [
+            "Sonatina in C, Op. 39 No. 1",
+            "\tI. Allegro",
+            "\tII. Minuet",
+            "\tIII. Rondo"
+          ],
+          "composer": ["Frank Lynes"]
+        }
+      ]
+    },
+    {
+      "performer": "Oscar Blazquez",
+      "pieces": [
+        {
+          "title": ["Inter-City Stomp"],
+          "composer": ["Christopher Norton"]
+        },
+        {
+          "title": ["Russian Polka"],
+          "composer": ["Mikhail Glinka"]
+        },
+        {
+          "title": ["The Imperial March"],
+          "composer": ["John Williams"]
+        }
+      ]
+    },
+    {
+      "performer": "Makayla Meng",
+      "pieces": [
+        {
+          "title": ["Colors of the Wind"],
+          "composer": ["Alan Menken"]
+        },
+        {
+          "title": ["Mountain Dance"],
+          "composer": ["Gerald Martin"]
+        },
+        {
+          "title": ["Moonlight Sonata"],
+          "composer": ["Ludwig van Beethoven"]
+        }
+      ]
+    },
+    {
+      "performer": "Charlotte Zhao",
+      "pieces": [
+        {
+          "title": ["Flower Dance"],
+          "composer": ["DJ Okawari"]
+        },
+        {
+          "title": ["Pachelbel Canon"],
+          "composer": ["Johann Pachelbel", "(arr. Lee Galloway)"]
+        }
+      ]
+    },
+    {
+      "performer": "Lydia Chang",
+      "pieces": [
+        {
+          "title": ["Sonatina in G, Op. 36 No. 2", "\tI. Allegretto"],
+          "composer": ["Muzio Clementi"]
+        },
+        {
+          "title": ["Novelette Romantique"],
+          "composer": ["Jean-Baptiste Duvernoy"]
+        }
+      ]
+    },
+    {
+      "performer": "Mari Chew",
+      "pieces": [
+        {
+          "title": ["Pachelbel Canon"],
+          "composer": ["Johann Pachelbel"]
+        },
+        {
+          "title": [
+            "Sonatina in G Major, Op. 168 No. 2",
+            "\tI. Allegro moderato"
+          ],
+          "composer": ["Anton Diabelli"]
+        },
+        {
+          "title": ["The Accidental Office"],
+          "composer": ["Daniel Thrasher"]
+        }
+      ]
+    }
+  ]
+}
