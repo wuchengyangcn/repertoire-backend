@@ -31,7 +31,7 @@ class Booklet:
         if device is None:
             device = "mobile"
         if device == "mobile":
-            lines_per_page = 11
+            lines_per_page = 14
         else:
             lines_per_page = 13
 
@@ -45,7 +45,7 @@ class Booklet:
             lines = 0
             for piece in self.content[performer]["pieces"]:
                 lines += max(len(piece["title"]), len(piece["composer"]))
-            lines += 1
+            lines += 2
             if current_count + lines > lines_per_page:
                 html_code.append(render_template(content_template, data=current_page))
                 current_page = []
