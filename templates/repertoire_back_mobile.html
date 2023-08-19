@@ -1,0 +1,64 @@
+<!--
+Copyright (C) 2023 musicnbrain.org
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Back</title>
+    <style>
+      .back {
+        overflow: hidden;
+        user-select: none;
+        min-height: 100%;
+        height: 90vh;
+        width: 90vw;
+        margin: 0 0;
+        background-color: #f5f5dc;
+      }
+
+      .icon {
+        position: relative;
+        top: 20vh;
+        text-align: center;
+      }
+
+      .image {
+        height: 80vw;
+        width: 80vw;
+      }
+
+      .name {
+        position: relative;
+        bottom: -22vh;
+        font-size: 10vw;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="back">
+      <div class="icon">
+        <img class="image" src="{{ data.icon }}" alt="" />
+      </div>
+      <div class="name">{{data.name}}</div>
+    </div>
+  </body>
+</html>

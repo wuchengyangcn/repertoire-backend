@@ -25,6 +25,7 @@ class Booklet:
         data = load(open(path, "r"))
         self.front = data["front"]
         self.content = data["content"]
+        self.back = data["back"]
 
     def repertoire(self, device):
         html_code = []
@@ -41,19 +42,23 @@ class Booklet:
         content_template = f"repertoire_content_{device}.html"
         current_page = []
         current_count = 0
-        for performer in range(len(self.content)):
+        for performer in self.content:
             lines = 0
-            for piece in self.content[performer]["pieces"]:
+            for piece in performer["pieces"]:
                 lines += max(len(piece["title"]), len(piece["composer"]))
             lines += 2
             if current_count + lines > lines_per_page:
                 html_code.append(render_template(content_template, data=current_page))
                 current_page = []
                 current_count = 0
-            current_page.append(self.content[performer])
+            current_page.append(performer)
             current_count += lines
         if len(current_page) > 0:
             html_code.append(render_template(content_template, data=current_page))
+
+        back_template = f"repertoire_back_{device}.html"
+        for sponsor in self.back:
+            html_code.append(render_template(back_template, data=sponsor))
 
         return jsonify(html_code)
 
