@@ -10,7 +10,8 @@
     "subtitle": "featuring students of Miranda Shum",
     "time": "SUNDAY, APRIL 23, 2023 | 2:00 PM",
     "location": "Tateuchi Hall, Community School of Music and Arts",
-    "address": "230 San Antonio Circle, Mountain View CA 94040"
+    "address": "230 San Antonio Circle, Mountain View CA 94040",
+    "background": "https://cdn.pixabay.com/photo/2022/11/28/18/58/piano-7622920_1280.jpg"
   },
   "content": [
     {
@@ -314,5 +315,12 @@
         }
       ]
     }
+  ],
+  "back": [
+    {"icon": "https://uploads-ssl.webflow.com/6011e54d155cc9428daebbdd/610d919c9f9e1d7d0b5638d7_tall%20trophy%202021%203.jpg", "name": "Twisted Heart"},
+    {"icon": "https://uploads-ssl.webflow.com/6011e54d155cc9428daebbdd/610d91b09558a9554247126c_medium%20trophy%202021.jpg", "name": "Gold Performance"},
+    {"icon": "https://uploads-ssl.webflow.com/6011e54d155cc9428daebbdd/605e4cec7291140fbc2f1e4d_tall%20trophy%20main.jpg", "name": "Large Crystal"},
+    {"icon": "https://uploads-ssl.webflow.com/6011e54d155cc9428daebbdd/605b67409a37b9349af6e5da_musicnbrain%20large%20gold%20medal.jpg", "name": "Gold Toned"},
+    {"icon": "https://uploads-ssl.webflow.com/6011e54d155cc9428daebbdd/605e4c125fb119c5bc6aef54_thumbs%20up%20trophy.jpg", "name": "Thumbs Up"}
   ]
 }
