@@ -22,12 +22,14 @@ from json import load
 
 class Booklet:
     def __init__(self, path):
+        # read data
         data = load(open(path, "r"))
         self.front = data["front"]
         self.content = data["content"]
         self.back = data["back"]
 
     def repertoire(self, device):
+        # line limit for each page
         html_code = []
         if device is None:
             device = "mobile"
@@ -36,6 +38,7 @@ class Booklet:
         else:
             lines_per_page = 13
 
+        # front page
         front_template = f"repertoire_front_{device}.html"
         html_code.append(render_template(front_template, data=self.front))
 
@@ -44,18 +47,22 @@ class Booklet:
         current_count = 0
         for performer in self.content:
             lines = 0
+            # count number of lines
             for piece in performer["pieces"]:
                 lines += max(len(piece["title"]), len(piece["composer"]))
             lines += 2
             if current_count + lines > lines_per_page:
+                # generate a new content page
                 html_code.append(render_template(content_template, data=current_page))
                 current_page = []
                 current_count = 0
             current_page.append(performer)
             current_count += lines
+        # last page
         if len(current_page) > 0:
             html_code.append(render_template(content_template, data=current_page))
 
+        # icons at the end
         back_template = f"repertoire_back_{device}.html"
         for sponsor in self.back:
             html_code.append(render_template(back_template, data=sponsor))
@@ -69,7 +76,8 @@ booklet = Booklet("./static/data.json")
 
 
 @app.route('/repertoire/')
-def repertoire():  # put application's code here
+def repertoire():
+    # device type
     device = request.args.get("device")
     return booklet.repertoire(device)
 
