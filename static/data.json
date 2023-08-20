@@ -336,6 +336,10 @@
     {
       "icon": "https://uploads-ssl.webflow.com/6011e54d155cc9428daebbdd/605e4c125fb119c5bc6aef54_thumbs%20up%20trophy.jpg",
       "name": "Thumbs Up"
+    },
+    {
+      "icon": "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=localhost:8080/repertoire",
+      "name": ""
     }
   ]
 }
