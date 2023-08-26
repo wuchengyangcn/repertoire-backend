@@ -75,12 +75,12 @@ CORS(app)
 booklet = Booklet("./static/data.json")
 
 
-@app.route('/repertoire/')
+@app.route("/repertoire/")
 def repertoire():
     # device type
     device = request.args.get("device")
     return booklet.repertoire(device)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()

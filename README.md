@@ -46,3 +46,15 @@ Copyright (C) 2023 musicnbrain.org
 ```
 $ python -m flask run
 ```
+
+### Build docker image
+
+```
+docker build -t musicnbrain/repertoire-backend .
+```
+
+### Run docker image
+
+```
+docker run -d -p 5001:5001 --name repertoire-backend musicnbrain/repertoire-backend
+```
