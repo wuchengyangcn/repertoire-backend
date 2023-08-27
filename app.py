@@ -18,6 +18,7 @@ Copyright (C) 2023 musicnbrain.org
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from json import load
+from getData import jsonData
 
 
 class Booklet:
@@ -72,7 +73,9 @@ class Booklet:
 
 app = Flask(__name__, static_url_path="")
 CORS(app)
-booklet = Booklet("./static/data.json")
+menu_data = jsonData()
+booklet = menu_data.getData("Music-menu")
+print(booklet)
 
 
 @app.route("/repertoire/")
