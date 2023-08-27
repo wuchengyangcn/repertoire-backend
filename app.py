@@ -17,19 +17,26 @@ Copyright (C) 2023 musicnbrain.org
 
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
-from json import load
+from json import loads
 from getData import jsonData
 
 
 class Booklet:
-    def __init__(self, path):
+    def __init__(self):
         # read data
-        data = load(open(path, "r"))
+        # data = load(open(path, "r"))
+        # self.front = data["front"]
+        # self.content = data["content"]
+        # self.back = data["back"]
+        self.menu_data = jsonData()
+
+    def repertoire(self, device):
+        # read data
+        data = loads(self.menu_data.getData("Music-menu"))
         self.front = data["front"]
         self.content = data["content"]
         self.back = data["back"]
 
-    def repertoire(self, device):
         # line limit for each page
         html_code = []
         if device is None:
@@ -73,9 +80,7 @@ class Booklet:
 
 app = Flask(__name__, static_url_path="")
 CORS(app)
-menu_data = jsonData()
-booklet = menu_data.getData("Music-menu")
-print(booklet)
+booklet = Booklet()
 
 
 @app.route("/repertoire/")

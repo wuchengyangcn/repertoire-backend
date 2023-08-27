@@ -10,7 +10,7 @@ class jsonData:
             'https://www.googleapis.com/auth/spreadsheets',
             'https://www.googleapis.com/auth/drive'
         ]
-        creds = ServiceAccountCredentials.from_json_keyfile_name("/Users/effiezhang/mobilewebsite-1/static/secret_key.json",scopes=scopes)
+        creds = ServiceAccountCredentials.from_json_keyfile_name("./static/secret_key.json",scopes=scopes)
         jsonData.file = gspread.authorize(creds)
 
     def getData(self, filename): 
@@ -48,9 +48,11 @@ class jsonData:
             "subtitle": "featuring students of Miranda Shum",
             "time": "SUNDAY, APRIL 23, 2023 | 2:00 PM",
             "location": "Tateuchi Hall, Community School of Music and Arts",
-            "address": "230 San Antonio Circle, Mountain View CA 94040"
+            "address": "230 San Antonio Circle, Mountain View CA 94040",
+            "background": "https://cdn.pixabay.com/photo/2022/11/28/18/58/piano-7622920_1280.jpg"
             },
-        "content": content
+        "content": content,
+        "back": [],
         }
 
         data = json.dumps(music_dict)
