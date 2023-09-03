@@ -26,12 +26,9 @@ class jsonData:
         df3 = pd.DataFrame(sheet3.get_all_records())
         content = []
 
-        # 按照performer列进行分组
         grouped = df1.groupby('performer')
 
-        # 遍历每个分组
         for performer, group_df in grouped:
-        # 获取当前分组的所有标题和作曲家
             titles = group_df['title'].tolist()
             composers = group_df['composer'].tolist()
             pieces = []
@@ -40,7 +37,9 @@ class jsonData:
                 pieces.append(piece_dict)
             performer_dict = {"performer": performer, "pieces": pieces}
             content.append(performer_dict)
+        content_json = json.dumps(content)
         
+        #add sheet2 data
         front_dict = OrderedDict()
         row2 = df2.iloc[0] 
         front_dict['title'] = row2[0]
@@ -51,6 +50,16 @@ class jsonData:
         front_dict['background'] = row2[5]
         front_dict_json = json.dumps(front_dict)
 
+        #add sheet3 data
+        back_list = []
+        icons = df3['icon'].to_list()
+        names = df3['name'].to_list()
+        for icon, name in zip(icons,names):
+            icon_dict = {"icon": icon, "name":name}
+            back_list.append(icon_dict)
+        back_list_json = json.dumps(back_list)
+        
+
         music_dict = {
             "license notice": [
             "Copyright (C) 2023 musicnbrain.org",
@@ -59,15 +68,15 @@ class jsonData:
             "You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>."
             ],
             "front": front_dict_json,
-        "content": content,
-        "back": [],
+        "content": content_json,
+        "back": back_list_json,
         }
         print(music_dict)
 
         data = json.dumps(music_dict)
         return data
 
-# test1 = jsonData()
+#test1 = jsonData()
 # test1.getData("Music-menu")
 
     
