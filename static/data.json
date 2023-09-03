@@ -339,7 +339,7 @@
     },
     {
       "icon": "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=localhost:8080/repertoire",
-      "name": ""
+      "name": "MusicNBrain"
     }
   ]
 }
