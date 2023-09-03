@@ -33,9 +33,9 @@ class Booklet:
     def repertoire(self, device):
         # read data
         data = loads(self.menu_data.getData("Music-menu"))
-        self.front = data["front"]
-        self.content = data["content"]
-        self.back = data["back"]
+        self.front = loads(data["front"])
+        self.content = loads(data["content"])
+        self.back = loads(data["back"])
 
         # line limit for each page
         html_code = []
