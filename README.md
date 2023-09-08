@@ -19,17 +19,15 @@ Copyright (C) 2023 musicnbrain.org
 
 > Serving HTML pages with Flask and Jinja2 templates
 
-## Setup
-- pip install gspread
-- pip install oauth2client
-- pip install PyOpenSSL
-
 ### Dependencies
 
 - Python
 - Flask
 - Flask CORS
 - Jinja2
+- gspread
+- oauth2client
+- PyOpenSSL
 
 ### Project Structure
 
