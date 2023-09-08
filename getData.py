@@ -7,20 +7,34 @@ from collections import OrderedDict
 class jsonData:
     file = ""
     def __init__(self):
+        pass
+        
+
+    def getData(self, filename): 
+        # get credentials
         scopes = [
             'https://www.googleapis.com/auth/spreadsheets',
             'https://www.googleapis.com/auth/drive'
         ]
         creds = ServiceAccountCredentials.from_json_keyfile_name("./static/secret_key.json",scopes=scopes)
-        jsonData.file = gspread.authorize(creds)
+        file = gspread.authorize(creds)
+        event = file.open(filename)
+        event_menu = event.sheet1
 
-    def getData(self, filename): 
-        workbook = jsonData.file.open(filename)
+        # get the first activate sheet
+        df_event = pd.DataFrame(event_menu.get_all_records())
+        cur_file = ""
+        for index, row in df_event.iterrows():
+            if row['status'] == "active":
+                cur_file = row['file']
+                break
+        
+        # get the data from the activate sheet
+        workbook = file.open(cur_file)
         sheet1 = workbook.sheet1
         sheet2 = workbook.get_worksheet(1)
         sheet3 = workbook.get_worksheet(2)
 
-        # print(sheet.row_values(2))
         df1 = pd.DataFrame(sheet1.get_all_records())
         df2 = pd.DataFrame(sheet2.get_all_records())
         df3 = pd.DataFrame(sheet3.get_all_records())
@@ -41,13 +55,13 @@ class jsonData:
         
         #add sheet2 data
         front_dict = OrderedDict()
-        row2 = df2.iloc[0] 
-        front_dict['title'] = row2[0]
-        front_dict['subtitle'] = row2[1]
-        front_dict['time'] = row2[2]
-        front_dict['location'] = row2[3]
-        front_dict['address'] = row2[4]
-        front_dict['background'] = row2[5]
+        col2 = df2['Content']
+        front_dict['title'] = col2[0]
+        front_dict['subtitle'] = col2[1]
+        front_dict['time'] = col2[2]
+        front_dict['location'] = col2[3]
+        front_dict['address'] = col2[4]
+        front_dict['background'] = col2[5]
         front_dict_json = json.dumps(front_dict)
 
         #add sheet3 data
@@ -76,8 +90,8 @@ class jsonData:
         data = json.dumps(music_dict)
         return data
 
-#test1 = jsonData()
-# test1.getData("Music-menu")
+# test1 = jsonData()
+# test1.getData("all events")
 
     
 
