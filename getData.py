@@ -5,20 +5,18 @@ from oauth2client.service_account import ServiceAccountCredentials
 from collections import OrderedDict
 
 class jsonData:
-    file = ""
     def __init__(self):
-        pass
-        
-
-    def getData(self, filename): 
         # get credentials
         scopes = [
             'https://www.googleapis.com/auth/spreadsheets',
             'https://www.googleapis.com/auth/drive'
         ]
         creds = ServiceAccountCredentials.from_json_keyfile_name("./static/secret_key.json",scopes=scopes)
-        file = gspread.authorize(creds)
-        event = file.open(filename)
+        self.file = gspread.authorize(creds)
+        self.all_events = "all_events"
+
+    def getData(self): 
+        event = self.file.open(self.all_events)
         event_menu = event.sheet1
 
         # get the first activate sheet
@@ -28,9 +26,9 @@ class jsonData:
             if row['status'] == "active":
                 cur_file = row['file']
                 break
-        
+
         # get the data from the activate sheet
-        workbook = file.open(cur_file)
+        workbook = self.file.open(cur_file)
         sheet1 = workbook.sheet1
         sheet2 = workbook.get_worksheet(1)
         sheet3 = workbook.get_worksheet(2)
@@ -52,8 +50,8 @@ class jsonData:
             performer_dict = {"performer": performer, "pieces": pieces}
             content.append(performer_dict)
         content_json = json.dumps(content)
-        
-        #add sheet2 data
+
+        # add sheet2 data
         front_dict = OrderedDict()
         col2 = df2['Content']
         front_dict['title'] = col2[0]
@@ -64,7 +62,7 @@ class jsonData:
         front_dict['background'] = col2[5]
         front_dict_json = json.dumps(front_dict)
 
-        #add sheet3 data
+        # add sheet3 data
         back_list = []
         icons = df3['icon'].to_list()
         names = df3['name'].to_list()
@@ -72,7 +70,6 @@ class jsonData:
             icon_dict = {"icon": icon, "name":name}
             back_list.append(icon_dict)
         back_list_json = json.dumps(back_list)
-        
 
         music_dict = {
             "license notice": [
@@ -92,10 +89,4 @@ class jsonData:
 
 # test1 = jsonData()
 # test1.getData("all events")
-
-    
-
-
-
-
 # update data

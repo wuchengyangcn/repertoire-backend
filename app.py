@@ -19,23 +19,26 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from json import loads
 from getData import jsonData
+import time
 
 
 class Booklet:
     def __init__(self):
+        self.menu = jsonData()
+        self.fetch_data()
+
+    def fetch_data(self):
         # read data
-        # data = load(open(path, "r"))
-        # self.front = data["front"]
-        # self.content = data["content"]
-        # self.back = data["back"]
-        self.menu_data = jsonData()
+        self.data = loads(self.menu.getData())
+        self.front = loads(self.data["front"])
+        self.content = loads(self.data["content"])
+        self.back = loads(self.data["back"])
+        self.last_update = time.time()
 
     def repertoire(self, device):
-        # read data
-        data = loads(self.menu_data.getData("Music-menu"))
-        self.front = loads(data["front"])
-        self.content = loads(data["content"])
-        self.back = loads(data["back"])
+        # update data
+        if time.time() - self.last_update > 3600:
+            self.fetch_data()
 
         # line limit for each page
         html_code = []
