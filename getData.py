@@ -49,44 +49,34 @@ class jsonData:
                 pieces.append(piece_dict)
             performer_dict = {"performer": performer, "pieces": pieces}
             content.append(performer_dict)
-        content_json = json.dumps(content)
 
         # add sheet2 data
-        front_dict = OrderedDict()
-        col2 = df2['Content']
-        front_dict['title'] = col2[0]
-        front_dict['subtitle'] = col2[1]
-        front_dict['time'] = col2[2]
-        front_dict['location'] = col2[3]
-        front_dict['address'] = col2[4]
-        front_dict['background'] = col2[5]
-        front_dict_json = json.dumps(front_dict)
+        front = OrderedDict()
+        col2 = df2['content']
+        front['title'] = col2[0]
+        front['subtitle'] = col2[1]
+        front['time'] = col2[2]
+        front['location'] = col2[3]
+        front['address'] = col2[4]
+        front['background'] = col2[5]
 
         # add sheet3 data
-        back_list = []
+        back = []
         icons = df3['icon'].to_list()
         names = df3['name'].to_list()
         for icon, name in zip(icons,names):
             icon_dict = {"icon": icon, "name":name}
-            back_list.append(icon_dict)
-        back_list_json = json.dumps(back_list)
+            back.append(icon_dict)
 
-        music_dict = {
+        data = {
             "license notice": [
             "Copyright (C) 2023 musicnbrain.org",
             "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.",
             "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.",
             "You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>."
             ],
-            "front": front_dict_json,
-        "content": content_json,
-        "back": back_list_json,
+            "front": front,
+            "content": content,
+            "back": back,
         }
-        print(music_dict)
-
-        data = json.dumps(music_dict)
         return data
-
-# test1 = jsonData()
-# test1.getData("all events")
-# update data

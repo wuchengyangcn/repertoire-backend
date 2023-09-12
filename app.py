@@ -29,10 +29,10 @@ class Booklet:
 
     def fetch_data(self):
         # read data
-        self.data = loads(self.menu.getData())
-        self.front = loads(self.data["front"])
-        self.content = loads(self.data["content"])
-        self.back = loads(self.data["back"])
+        self.data = self.menu.getData()
+        self.front = self.data["front"]
+        self.content = self.data["content"]
+        self.back = self.data["back"]
         self.last_update = time.time()
 
     def repertoire(self, device):
@@ -45,9 +45,9 @@ class Booklet:
         if device is None:
             device = "mobile"
         if device == "mobile":
-            lines_per_page = 14
+            lines_per_page = 15
         else:
-            lines_per_page = 13
+            lines_per_page = 14
 
         # front page
         front_template = f"repertoire_front_{device}.html"
@@ -61,7 +61,10 @@ class Booklet:
             # count number of lines
             for piece in performer["pieces"]:
                 lines += max(len(piece["title"]), len(piece["composer"]))
-            lines += 2
+            if device == "mobile":
+                lines += 3
+            else:
+                lines += 2
             if current_count + lines > lines_per_page:
                 # generate a new content page
                 html_code.append(render_template(content_template, data=current_page))
@@ -94,4 +97,4 @@ def repertoire():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5001)
