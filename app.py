@@ -17,46 +17,58 @@ Copyright (C) 2023 musicnbrain.org
 
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
-from json import loads
-from getData import jsonData
-import time
+from getData import JsonData
+from flask_apscheduler import APScheduler
 
 
 class Booklet:
     def __init__(self):
-        self.menu = jsonData()
+        self.menu = JsonData()
+        self.data = []
         self.fetch_data()
 
     def fetch_data(self):
-        # read data
-        self.data = self.menu.getData()
-        self.front = self.data["front"]
-        self.content = self.data["content"]
-        self.back = self.data["back"]
-        self.last_update = time.time()
+        # fetch data
+        self.data = self.menu.fetch_events()
 
-    def repertoire(self, device):
-        # update data
-        if time.time() - self.last_update > 3600:
-            self.fetch_data()
+    def repertoire(self, device, event_id):
+        if event_id is None:
+            idx = -1
+        else:
+            idx = int(event_id) - 1
+        if idx < 0 or idx >= len(self.data):
+            # find the last active event
+            idx = -1
+            for temp in range(len(self.data) - 1, -1, -1):
+                if self.data[temp]["status"] == "active":
+                    idx = temp
+                    break
+            if idx == -1:
+                idx = len(self.data) - 1
 
         # line limit for each page
-        html_code = []
         if device is None:
             device = "mobile"
         if device == "mobile":
             lines_per_page = 15
         else:
+            device = "desktop"
             lines_per_page = 14
+
+        html_code = []
+        front = self.data[idx]["front"]
+        content = self.data[idx]["content"]
+        back = self.data[idx]["back"]
 
         # front page
         front_template = f"repertoire_front_{device}.html"
-        html_code.append(render_template(front_template, data=self.front))
+        html_code.append(render_template(front_template, data=front))
 
+        # content page
         content_template = f"repertoire_content_{device}.html"
         current_page = []
         current_count = 0
-        for performer in self.content:
+        for performer in content:
             lines = 0
             # count number of lines
             for piece in performer["pieces"]:
@@ -78,22 +90,36 @@ class Booklet:
 
         # icons at the end
         back_template = f"repertoire_back_{device}.html"
-        for sponsor in self.back:
+        for sponsor in back:
             html_code.append(render_template(back_template, data=sponsor))
 
         return jsonify(html_code)
 
 
+class Config(object):
+    SCHEDULER_API_ENABLED = True
+
+
+booklet = Booklet()
+scheduler = APScheduler()
 app = Flask(__name__, static_url_path="")
 CORS(app)
-booklet = Booklet()
+app.config.from_object(Config())
+scheduler.init_app(app)
+scheduler.start()
+
+
+@scheduler.task('interval', id=None, minutes=10)
+def fetch_job():
+    booklet.fetch_data()
 
 
 @app.route("/repertoire/")
 def repertoire():
     # device type
-    device = request.args.get("device")
-    return booklet.repertoire(device)
+    device_type = request.args.get("device")
+    event_id = request.args.get("id")
+    return booklet.repertoire(device_type, event_id)
 
 
 if __name__ == "__main__":
