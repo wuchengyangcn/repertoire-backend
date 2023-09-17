@@ -50,10 +50,10 @@ class Booklet:
         if device is None:
             device = "mobile"
         if device == "mobile":
-            lines_per_page = 15
+            lines_per_page = 14
         else:
             device = "desktop"
-            lines_per_page = 14
+            lines_per_page = 13
 
         html_code = []
         front = self.data[idx]["front"]
@@ -76,7 +76,7 @@ class Booklet:
             if device == "mobile":
                 lines += 3
             else:
-                lines += 2
+                lines += 3
             if current_count + lines > lines_per_page:
                 # generate a new content page
                 html_code.append(render_template(content_template, data=current_page))
