@@ -15,6 +15,13 @@ class JsonData:
         self.file = None
         self.data = []
 
+    def update_visits(self, visits):
+        self.file = gspread.authorize(self.creds)
+        event = self.file.open("all_events")
+        event_menu = event.sheet1
+        for idx in range(len(visits)):
+            event_menu.update_cell(idx + 2, 5, visits[idx])
+
     def fetch_events(self):
         self.file = gspread.authorize(self.creds)
         self.data = []
@@ -26,6 +33,7 @@ class JsonData:
         for index, row in df_event.iterrows():
             event_data = self.fetch_event(row["file"])
             event_data["status"] = row["status"]
+            event_data["visit"] = row["visit"]
             self.data.append(event_data)
         return self.data
 

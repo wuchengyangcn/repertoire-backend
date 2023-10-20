@@ -28,6 +28,10 @@ class Booklet:
         self.fetch_data()
 
     def fetch_data(self):
+        # update visit
+        if len(self.data) > 0:
+            visits = [page["visit"] for page in self.data]
+            self.menu.update_visits(visits)
         # fetch data
         self.data = self.menu.fetch_events()
 
@@ -56,6 +60,7 @@ class Booklet:
             lines_per_page = 13
 
         html_code = []
+        self.data[idx]["visit"] += 1
         front = self.data[idx]["front"]
         content = self.data[idx]["content"]
         back = self.data[idx]["back"]
