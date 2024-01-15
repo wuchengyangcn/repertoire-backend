@@ -1,0 +1,1 @@
+watch --interval=3600 python main.py
