@@ -1,1 +1,1 @@
-watch --interval=3600 python3 main.py
+watch --interval=3600 python main.py
