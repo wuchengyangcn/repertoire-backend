@@ -23,6 +23,9 @@ from io import BytesIO
 import pandas as pd
 import datetime
 import os
+import warnings
+warnings.filterwarnings("ignore")
+
 
 class DatabaseConnection:
     def __init__(self, info):
@@ -71,6 +74,7 @@ class DatabaseConnection:
         self.connection.commit()
         self.close()
 
+
 class DriveConnection:
     def __init__(self, token):
         self.token = token
@@ -84,13 +88,19 @@ class DriveConnection:
         )
         self.service = build('drive', 'v3', credentials=self.credentials).files()
         self.folder = self.service.list(q="mimeType='application/vnd.google-apps.folder'").execute()['files'][0]['id']
-    
+
+    def close(self):
+        self.service = None
+        self.folder = None
+
     def get(self, table):
         self.open()
-        results = self.service.list(q=f"'{self.folder}' in parents").execute()['files']
-        for result in results:
-            if result['name'] == f'{table}.xlsx':
-                file_id = result['id']
+        file_id = None
+        while file_id is None:
+            results = self.service.list(q=f"'{self.folder}' in parents").execute()['files']
+            for result in results:
+                if result['name'] == f'{table}.xlsx':
+                    file_id = result['id']
         content = BytesIO()
         downloader = MediaIoBaseDownload(content, self.service.get_media(fileId=file_id))
         done = False
@@ -99,6 +109,7 @@ class DriveConnection:
         df = pd.read_excel(content)
         columns = df.columns.tolist()
         rows = df.values.tolist()
+        self.close()
         return columns, rows
 
     def put(self, table, columns, rows):
@@ -125,29 +136,32 @@ class DriveConnection:
         media = MediaFileUpload(f'{table}.xlsx')
         self.service.create(body=metadata, media_body=media).execute()
         os.remove(f'{table}.xlsx')
+        self.close()
 
-print(datetime.datetime.now())
-# columns = ['name', 'composer', 'title']
-# rows = [['Allison', 'Minuet in G', 'Christian Petzold'],
-#            ['Christy', 'Johann Bach', 'Minute in D minor'],
-#            ['Aiden', 'The Animal Band', 'The Animal Band']]
-table = 'session1'
 
-database_credentials = {
-    'host': 'localhost',
-    'database': 'database',
-    'user': 'postgres',
-    'password': 'secret'
-}
-database_connection = DatabaseConnection(database_credentials)
-# database_connection.put(table, columns, rows)
-database_columns, database_rows = database_connection.get(table)
-print(database_columns)
-print(database_rows)
+if __name__ == '__main__':
+    print(datetime.datetime.now())
+    columns = ['name', 'composer', 'title']
+    rows = [['Allison', 'Minuet in G', 'Christian Petzold'],
+            ['Christy', 'Johann Bach', 'Minute in D minor'],
+            ['Aiden', 'The Animal Band', 'The Animal Band']]
+    table = 'session1'
 
-drive_token = 'token.json'
-drive_connection = DriveConnection(drive_token)
-drive_connection.put(table, database_columns, database_rows)
-drive_columns, drive_rows = drive_connection.get(table)
-print(drive_columns)
-print(drive_rows)
+    database_credentials = {
+        'host': 'localhost',
+        'database': 'database',
+        'user': 'postgres',
+        'password': 'secret'
+    }
+    database_connection = DatabaseConnection(database_credentials)
+    database_connection.put(table, columns, rows)
+    database_columns, database_rows = database_connection.get(table)
+    print(database_columns)
+    print(database_rows)
+
+    drive_token = 'token.json'
+    drive_connection = DriveConnection(drive_token)
+    drive_connection.put(table, database_columns, database_rows)
+    drive_columns, drive_rows = drive_connection.get(table)
+    print(drive_columns)
+    print(drive_rows)
