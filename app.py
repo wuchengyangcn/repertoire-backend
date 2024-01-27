@@ -19,13 +19,16 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from getData import JsonData
 from flask_apscheduler import APScheduler
+import json
+import numpy as np
 
 
 class Booklet:
     def __init__(self):
         self.menu = JsonData()
         self.data = []
-        self.fetch_data()
+        self.data = json.load(open("./static/temp.json", "r"))
+        # self.fetch_data()
 
     def fetch_data(self):
         # update visit
@@ -34,6 +37,7 @@ class Booklet:
             self.menu.update_visits(visits)
         # fetch data
         self.data = self.menu.fetch_events()
+        json.dump(self.data, open("./static/temp.json", "w"))
 
     def repertoire(self, device, event_id):
         if event_id is None:
@@ -50,14 +54,7 @@ class Booklet:
             if idx == -1:
                 idx = len(self.data) - 1
 
-        # line limit for each page
-        if device is None:
-            device = "mobile"
-        if device == "mobile":
-            lines_per_page = 14
-        else:
-            device = "desktop"
-            lines_per_page = 13
+        lines_per_page = 22
 
         html_code = []
         self.data[idx]["visit"] += 1
@@ -66,22 +63,21 @@ class Booklet:
         back = self.data[idx]["back"]
 
         # front page
-        front_template = f"repertoire_front_{device}.html"
+        front_template = f"{device}_front.html"
         html_code.append(render_template(front_template, data=front))
 
         # content page
-        content_template = f"repertoire_content_{device}.html"
+        content_template = f"{device}_content.html"
         current_page = []
         current_count = 0
         for performer in content:
-            lines = 0
-            # count number of lines
+            lines = len(performer["performer"]) // 23 + 1
             for piece in performer["pieces"]:
-                lines += max(len(piece["title"]), len(piece["composer"]))
-            if device == "mobile":
-                lines += 3
-            else:
-                lines += 3
+                lines += max(
+                    sum(len(temp) // 15 + 1 for temp in piece["title"]),
+                    sum(len(temp) // 15 + 1 for temp in piece["composer"]),
+                )
+            lines += 0.5
             if current_count + lines > lines_per_page:
                 # generate a new content page
                 html_code.append(render_template(content_template, data=current_page))
@@ -94,7 +90,7 @@ class Booklet:
             html_code.append(render_template(content_template, data=current_page))
 
         # icons at the end
-        back_template = f"repertoire_back_{device}.html"
+        back_template = f"{device}_back.html"
         for sponsor in back:
             html_code.append(render_template(back_template, data=sponsor))
 
