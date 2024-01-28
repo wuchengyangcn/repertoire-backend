@@ -28,7 +28,7 @@ class Booklet:
         self.menu = JsonData()
         self.data = []
         self.data = json.load(open("./static/temp.json", "r"))
-        # self.fetch_data()
+        self.fetch_data()
 
     def fetch_data(self):
         # update visit
@@ -37,7 +37,7 @@ class Booklet:
             self.menu.update_visits(visits)
         # fetch data
         self.data = self.menu.fetch_events()
-        json.dump(self.data, open("./static/temp.json", "w"))
+        # json.dump(self.data, open("./static/temp.json", "w"))
 
     def repertoire(self, device, event_id):
         if event_id is None:
