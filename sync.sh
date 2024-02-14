@@ -8,8 +8,8 @@ fi
 
 if [ $sync == 1 ]; then
   echo "clean docker"
-  sudo docker kill $(sudo docker ps --filter "name=repertoire-backend" -q)
-  sudo docker rm $(sudo docker ps --filter "name=repertoire-backend" -q)
+  sudo docker kill $(sudo docker ps --filter "name=repertoire-backend" -aq)
+  sudo docker rm $(sudo docker ps --filter "name=repertoire-backend" -aq)
   sudo docker rmi $(sudo docker images musicnbrain/repertoire-backend -q)
   sudo docker rmi $(sudo docker images python -q)
 
