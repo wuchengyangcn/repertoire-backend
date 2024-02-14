@@ -1,0 +1,47 @@
+{
+  "ip14": {
+    "lines_per_page": 22,
+    "performer_offset": 0.5,
+    "performer_characters_per_line": 23,
+    "piece_characters_per_line": 15,
+    "front_template": "ip14_front.html",
+    "content_template": "ip14_content.html",
+    "back_template": "ip14_back.html"
+  },
+  "ip14pro": {
+    "lines_per_page": 22,
+    "performer_offset": 0.5,
+    "performer_characters_per_line": 23,
+    "piece_characters_per_line": 15,
+    "front_template": "ip14pro_front.html",
+    "content_template": "ip14pro_content.html",
+    "back_template": "ip14pro_back.html"
+  },
+  "ip14promax": {
+    "lines_per_page": 23,
+    "performer_offset": 0.5,
+    "performer_characters_per_line": 24,
+    "piece_characters_per_line": 16,
+    "front_template": "ip14promax_front.html",
+    "content_template": "ip14promax_content.html",
+    "back_template": "ip14promax_back.html"
+  },
+  "mobile": {
+    "lines_per_page": 22,
+    "performer_offset": 0.5,
+    "performer_characters_per_line": 23,
+    "piece_characters_per_line": 15,
+    "front_template": "mobile_front.html",
+    "content_template": "mobile_content.html",
+    "back_template": "mobile_back.html"
+  },
+  "desktop": {
+    "lines_per_page": 13,
+    "performer_offset": 0.5,
+    "performer_characters_per_line": 20,
+    "piece_characters_per_line": 17,
+    "front_template": "desktop_front.html",
+    "content_template": "desktop_content.html",
+    "back_template": "desktop_back.html"
+  }
+}
