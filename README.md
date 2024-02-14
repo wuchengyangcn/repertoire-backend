@@ -28,18 +28,34 @@ Copyright (C) 2023 musicnbrain.org
 - gspread
 - oauth2client
 - PyOpenSSL
+- pandas
+- Flask-APScheduler
+- google-api-python-client
+- google-auth-httplib2
+- google-auth-oauthlib
+- openpyxl
+- xlsxwriter
 
 ### Project Structure
 
 ```
 ├── app.py
 ├── static
-│   └── data.json
+│   ├── data.json
+│   └── model_config.json
 └── templates
-    ├── repertoire_content_desktop.html
-    ├── repertoire_content_mobile.html
-    ├── repertoire_front_desktop.html
-    └── repertoire_front_mobile.html
+    ├── ip14_front.html
+    ├── ip14_content.html
+    ├── ip14_back.html
+    ├── ip14pro_front.html
+    ├── ip14pro_content.html
+    ├── ip14pro_back.html
+    ├── ip14promax_front.html
+    ├── ip14promax_content.html
+    ├── ip14promax_back.html
+    ├── mobile_front.html
+    ├── mobile_content.html
+    └── mobile_back.html
 ```
 
 ### Run
@@ -58,4 +74,16 @@ docker build -t musicnbrain/repertoire-backend .
 
 ```
 docker run -d -p 5001:5001 --name repertoire-backend musicnbrain/repertoire-backend
+```
+
+### Deploy
+
+```
+./build.sh
+```
+
+### CI/CD
+
+```
+{ crontab -l; echo "0 * * * * ~/repertoire-backend/sync.sh"; } | crontab -
 ```

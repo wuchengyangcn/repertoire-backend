@@ -1,0 +1,107 @@
+<!--
+Copyright (C) 2024 musicnbrain.org
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!-- Sample template for front page -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Front</title>
+    <style>
+      /* page size */
+      .front {
+        overflow: hidden;
+        user-select: none;
+        min-height: 100%;
+        height: 90vh;
+        width: 90vw;
+        margin: 0 0;
+      }
+
+      /* header position */
+      .front-upper {
+        position: absolute;
+        top: 10vh;
+        left: 1vw;
+        right: 10vw;
+        background-color: rgba(256, 256, 256, 0.8);
+      }
+
+      /* header font size */
+      #title {
+        font-size: 10vw;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: left;
+      }
+
+      /* subheader */
+      #subtitle {
+        font-size: 6vw;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: left;
+      }
+
+      /* footer position */
+      .front-lower {
+        position: absolute;
+        bottom: 10vh;
+        left: 10vw;
+        right: 1vw;
+        background-color: rgba(256, 256, 256, 0.8);
+      }
+
+      /* footer font size */
+      #time {
+        font-size: 7vw;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: right;
+      }
+
+      /* subfooter */
+      #location {
+        font-size: 6vw;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: right;
+      }
+
+      /* subfooter */
+      #address {
+        font-size: 6vw;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="front"
+      style="background: url({{ data.background }}); background-size: cover;"
+    >
+      <div class="front-upper">
+        <div id="title">{{data.title}}</div>
+        <div id="subtitle">{{data.subtitle}}</div>
+      </div>
+      <div class="front-lower">
+        <div id="time">{{data.time}}</div>
+        <div id="location">{{data.location}}</div>
+        <div id="address">{{data.address}}</div>
+      </div>
+    </div>
+  </body>
+</html>
