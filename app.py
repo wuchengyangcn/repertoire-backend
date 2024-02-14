@@ -38,6 +38,8 @@ class Booklet:
         self.data = self.menu.fetch_events()
 
     def repertoire(self, device, event_id):
+        if device is None or device not in self.model_config:
+            device = "ip14"
         if event_id is None:
             idx = -1
         else:
@@ -69,13 +71,25 @@ class Booklet:
         current_page = []
         current_count = 0
         for performer in content:
-            lines = len(performer["performer"]) // self.model_config[device]["performer_characters_per_line"] + 1
+            lines = (
+                len(performer["performer"])
+                // self.model_config[device]["performer_characters_per_line"]
+                + 1
+            )
             for piece in performer["pieces"]:
                 lines += max(
-                    sum(len(temp) // self.model_config[device]["piece_characters_per_line"] + 1
-                        for temp in piece["title"]),
-                    sum(len(temp) // self.model_config[device]["piece_characters_per_line"] + 1
-                        for temp in piece["composer"]),
+                    sum(
+                        len(temp)
+                        // self.model_config[device]["piece_characters_per_line"]
+                        + 1
+                        for temp in piece["title"]
+                    ),
+                    sum(
+                        len(temp)
+                        // self.model_config[device]["piece_characters_per_line"]
+                        + 1
+                        for temp in piece["composer"]
+                    ),
                 )
             lines += self.model_config[device]["performer_offset"]
             if current_count + lines > lines_per_page:
@@ -110,7 +124,7 @@ scheduler.init_app(app)
 scheduler.start()
 
 
-@scheduler.task('interval', id=None, minutes=10)
+@scheduler.task("interval", id=None, minutes=10)
 def fetch_job():
     booklet.fetch_data()
 
