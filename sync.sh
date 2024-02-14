@@ -15,6 +15,7 @@ if [ $sync == 1 ]; then
 
   echo "build docker"
   cd ~/repertoire-backend
+  git pull
   ./build.sh
 fi
 
